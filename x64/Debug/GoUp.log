@@ -1,0 +1,4 @@
+﻿  initProgVal.cpp
+Z:\MyProjects\GoUp\initProgVal.cpp(34,72): warning C4305: "argument": obcięcie z "double" do "GLfloat"
+Z:\MyProjects\GoUp\initProgVal.cpp(35,76): warning C4305: "argument": obcięcie z "double" do "GLfloat"
+  GoUp.vcxproj -> Z:\MyProjects\GoUp\x64\Debug\GoUp.exe

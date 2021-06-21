@@ -1,0 +1,2 @@
+Z:\MyProjects\GoUp\x64\Debug\GoUp.exe
+Z:\MyProjects\GoUp\x64\Debug\GoUp.pdb

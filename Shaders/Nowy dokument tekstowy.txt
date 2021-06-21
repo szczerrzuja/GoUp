@@ -1,0 +1,33 @@
+void LightSource::lightThemAll( GLuint OBJVAO)
+{
+	//tutaj ciężko jest mi wyjaśnić jakt to wszystko działa ale działa
+	//pobranie macierzy 
+	GLfloat ProjectionMatrix[16];
+	glGetFloatv(GL_PROJECTION_MATRIX, ProjectionMatrix);
+	shaders->at(0)->run();
+	//te funkcje pobierają lokacje danych zmiennych w shaderze
+	GLint lightPosLoc = glGetUniformLocation(shaders->at(0)->Program, "objectColor");
+	GLint viewPosLoc = glGetUniformLocation(shaders->at(0)->Program, "viewPos");
+	GLint lightColorLoc = glGetUniformLocation(shaders->at(0)->Program, "lightColor");
+	GLint objectColorLoc = glGetUniformLocation(shaders->at(0)->Program, "objectColor");
+	//tutaj te zmienne są zmieniane
+	glUniform3f(objectColorLoc, 1.0f, 0.5f, 0.31f);
+	glUniform3f(lightColorLoc, 1.0f, 1.0f, 1.0f);
+	glUniform3f(lightPosLoc, position.x, position.y, position.z);
+	glUniform3f(viewPosLoc, CameraPosition.x, CameraPosition.y, CameraPosition.z);
+
+	//te funkcje pobierają lokacje danych zmiennych w shaderze
+	GLint modelViewLoc = glGetUniformLocation(shaders->at(0)->Program, "modelView");
+	GLint viewLoc = glGetUniformLocation(shaders->at(0)->Program, "view");
+	GLint projLoc = glGetUniformLocation(shaders->at(0)->Program, "projection");
+
+	//tutaj należy przekazać skaźnik do pojemnika 
+	glBindVertexArray(OBJVAO);	
+    GLfloat ModelVievMatrix[16];
+    glGetFloatv(GL_MODELVIEW_MATRIX, ModelVievMatrix);
+
+	glUniformMatrix4fv(modelViewLoc, 1, GL_FALSE, ModelVievMatrix);
+	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, viewMatrix.index);
+	glUniformMatrix4fv(projLoc, 1, GL_FALSE, ProjectionMatrix);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+}

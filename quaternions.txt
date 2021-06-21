@@ -1,0 +1,15 @@
+quaternion_t quaternion_from_angles(float _yaw, float _pitch, float _roll)
+{
+    _yaw /= 2;
+    _pitch /= 2;
+    _roll /= 2;    float cy = cosf(_yaw);
+    float sy = sinf(_yaw);
+    float cp = cosf(_pitch);
+    float sp = sinf(_pitch);
+    float cr = cosf(_roll);
+    float sr = sinf(_roll);    quaternion_t temp;
+    temp.w = cr * cp * cy + sr * sp * sy;
+    temp.x = sr * cp * cy - cr * sp * sy;
+    temp.y = cr * sp * cy + sr * cp * sy;
+    temp.z = cr * cp * sy - sr * sp * cy;    return temp;
+}
