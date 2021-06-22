@@ -26,11 +26,11 @@ void initProgVal::test(Shader& shader)
 {
 	GLint lightColorLoc = glGetUniformLocation(shader.Program, "light.Color");
 	//tutaj te zmienne s¹ zmieniane
-	glUniform3f(lightColorLoc, 1.0f, 0.7f, 0.4f);
+	glUniform3f(lightColorLoc, 0.6f, 0.8f, 0.8f);
 
 	glUniform1f(glGetUniformLocation(shader.Program, "light.cutOff"), glm::cos(glm::radians(12.5f)));
 	glUniform1f(glGetUniformLocation(shader.Program, "light.outerCutOff"), glm::cos(glm::radians(17.5f)));
 	glUniform1f(glGetUniformLocation(shader.Program, "light.constant"), 1.0f);
-	glUniform1f(glGetUniformLocation(shader.Program, "light.linear"), 0.09);
-	glUniform1f(glGetUniformLocation(shader.Program, "light.quadratic"), 0.032);
+	glUniform1f(glGetUniformLocation(shader.Program, "light.linear"), 0.0045);
+	glUniform1f(glGetUniformLocation(shader.Program, "light.quadratic"), 0.0008);
 }

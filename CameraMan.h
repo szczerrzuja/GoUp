@@ -1,5 +1,7 @@
 #pragma once
+//je¿eli nie dzia³a to trzeba zainstalowaæ jak na http://glew.sourceforge.net/install.html
 #include <GL/glew.h>
+
 #include "glm/glm/glm.hpp"
 #include "glm/glm/gtc/matrix_transform.hpp"
 #include "LightSource.h"

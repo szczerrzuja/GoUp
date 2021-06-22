@@ -6,7 +6,7 @@ Game::Game()
 {
 	intKeys();
 	fps_cap = 1.0/89 * 1000;
-	player = new Player({ 0, 1, 4}, { -10,0,0 });
+	player = new Player({ 0, 1, 0}, { -10,0,0 });
 	timer = Timer();
 	ColidingObjects.push_back(new StableObject({ 5,0,0 }, { 0,0,0 }, 1));
 
@@ -15,7 +15,7 @@ Game::Game()
 
 	programValuesInit;
 	initShaders();
-	initParkour(50);
+	initParkour(5000);
 	
 }
 Game::~Game()
@@ -147,7 +147,7 @@ void Game::reshape(int w, int h)
 	glViewport(0, 0, w, h);
 
 	// Set the correct perspective.
-	gluPerspective(45.0f, ratio, 0.1f, 100.0f);
+	gluPerspective(45.0f, ratio, 0.1f, 200.0f);
 
 	// Get Back to the Modelview
 	glMatrixMode(GL_MODELVIEW);

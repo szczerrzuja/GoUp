@@ -133,9 +133,10 @@ Player::Player(glm::vec3 pos, glm::vec3 rot): Entity(pos, rot)
 	camera = new CameraTP(pos + glm::vec3(0,1.7,0), rot);
 	is_standing = true;
 	Mesh tmp = make_flashlight();
-	move_mesh(&tmp, { 0.0, 1.5, 2.0 });
+	move_mesh(&tmp, { 0.0, 0.0, 2.0 });
 	tmp.applyTransform();
 	mesh.push_back(new Mesh(tmp.vertices, tmp.indices,1));
+	move_mesh(mesh[0], { 0.0,1.00,0.0 });
 	move_mesh(mesh[0],pos);
 	m_rotate_mesh(mesh[0], rot);
 	jump_count = 1;
@@ -201,25 +202,32 @@ void Player::rotate(glm::vec3 rot)
 	if (rotation.x > 81.0f)
 	{
 		drot.x = 81.0f - rotation.x;
+		rotation.x = 81.0f;
 	}
 	else if (rotation.x < -81.0f)
 	{
 		drot.x = -81.0f - rotation.x;
+		rotation.x = -81.0f;
 	}
 	else
+	{
 		drot.x = rot.x;
-	if (rotation.y > 173.0f)
+		rotation.x = rot.x;
+	}		
+	rotation.y += rot.y;
+	if (rotation.y > 360.0f)
 	{
-		drot.y = 173.0f - rotation.y;
+		
+		rotation.y -= -360.0f;
 	}
-	else if (rotation.y < -173.0f)
+	else if (rotation.y < -360.0f)
 	{
-		drot.y = -173.0f - rotation.y;
+		
+		rotation.y -= -360.0f;
 	}
-	else drot.y = rot.y;
-	rotation += rot;
-
-	m_rotate_mesh(mesh[0], {drot.x, rot.y, rot.z });
+	
+	drot.y = rot.y;
+	m_rotate_mesh(mesh[0], drot);
 	camera->updateCamera_rot(rot);
 
 }

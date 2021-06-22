@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
 	*/
 	glEnable(GL_DEPTH_TEST);
-	glClearColor(1.0, 1.0, 1.0, 1.0);
+	glClearColor(0.0, 0.0, 0.0, 1.0);
 
 	GLenum err = glewInit();
 	if (GLEW_OK != err)

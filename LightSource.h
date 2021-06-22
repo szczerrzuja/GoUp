@@ -5,7 +5,9 @@
 #include <vector>
 #include "glm/glm/gtc/matrix_transform.hpp"
 #include "glm/glm/gtc/type_ptr.hpp"
-
+/*
+Ta klasa nie dzia³a, w³aœciwoœci œwiatla mo¿na zmieniæ w pliku initProgVal.cpp
+*/
 #ifndef LightSource_H
 #define LightSource_H
 extern glm::mat4 viewMatrix, ProjectionMatrix;

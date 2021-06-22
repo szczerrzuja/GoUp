@@ -30,15 +30,15 @@ void main()
     
     // Diffuse
     vec3 norm = normalize(Normal);
-    float diff = clamp(abs(dot(lightVector, norm)), 0,1);
-    vec4 diffuse = vec4(diff, diff, diff, 1.0f) * vec4(light.Color, 1.0f)*1.0;
+    float diff = clamp(abs(dot(norm, lightVector)), 0,1);
+    vec4 diffuse = vec4(diff, diff, diff, 1.0f) * vec4(light.Color, 1.0f)*0.8;
 
     //Specular
     float specularStrength = 0.5f;
     vec3 viewDir = normalize(viewPos - vPosition);
     vec3 reflectDir = reflect(-lightVector, norm);
-    float spec = clamp(abs(dot(reflectDir, viewDir)), 0, 1) ;
-    spec = spec*spec;
+    float spec = pow(clamp(abs(dot(viewDir,reflectDir)), 0, 1), 26 );
+
     vec4 specular =vec4(spec, spec, spec, 1.0f)* specularStrength  * vec4(light.Color, 1.0f);
     //spotlight
    
@@ -47,7 +47,7 @@ void main()
     float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0, 1.0);
     diffuse  *= intensity;
     specular *= intensity;
-    // Attenuation
+    // odciêcie
      /*
     float distance    = length(light.position - vPosition);
     float attenuation = 1.0f / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
@@ -57,5 +57,5 @@ void main()
     */
 
 
-    color =  (ambient + diffuse + specular) * objectColor;
+    color =  (ambient + diffuse + specular ) * objectColor;
 }
